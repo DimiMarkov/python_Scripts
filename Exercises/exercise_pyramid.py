@@ -1,27 +1,31 @@
 import itertools
 
-toDrawOnCurrentLine = 0
-currentRow = 0
+toDrawOnCurrentLine = 1
+currentRow = 1
 
 
 sizeOfObject = int(input())
 
-numberOfCharInLastRow =	sizeOfObject+(sizeOfObject-1)
+numberOfCharInLastRow = sizeOfObject+(sizeOfObject-1)
 whereToBegin = int(numberOfCharInLastRow / 2)
 
-while currentRow<sizeOfObject:
-	charToDraw = sizeOfObject+(sizeOfObject-1)
-	toDrawOnCurrentLine =	currentRow + (currentRow-1)
-	whereToBegin -= 1
-	i =	0
-	while i<charToDraw:
+charsToDrawOnLine = sizeOfObject+(sizeOfObject-1)
 
-		if i==whereToBegin:
+
+while currentRow < sizeOfObject:
+
+	toDrawOnCurrentLine = currentRow + (currentRow-1)
+	whereToBegin -= 1
+	line = 0
+	while line < charsToDrawOnLine:
+		line += 1
+		if line == whereToBegin:
 			for _ in itertools.repeat(None, toDrawOnCurrentLine):
 				print('*', end='')
+				line += 1
 		else:
-			print(' ', end='')
-		i += 1
-		if i == charToDraw-1:
+			print('.', end='')
+
+		if line == charsToDrawOnLine - 1:
 			print(end='\n')
 	currentRow += 1
